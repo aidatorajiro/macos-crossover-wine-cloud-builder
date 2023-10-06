@@ -158,16 +158,18 @@ fi
 
 if [[ ${CX_MAJOR} -ge 21 ]]; then
     if [[ ! -f "${PACKAGE_UPLOAD}/${DXVK_INSTALLATION}.tar.gz" ]]; then
-        #begingroup "Applying patches to DXVK"
-        #pushd sources/dxvk
-        #if [[ $ENABLE_PATCH ]]; then
-        #patch -p1 < ${GITHUB_WORKSPACE}/0001-build-macOS-Fix-up-for-macOS.patch
-        #patch -p1 < ${GITHUB_WORKSPACE}/0002-fix-d3d11-header-for-MinGW-9-1883.patch
-        #patch -p1 < ${GITHUB_WORKSPACE}/0003-fixes-for-mingw-gcc-12.patch
-        #patch -p1 < ${GITHUB_WORKSPACE}/0004-cstdint-fix.patch
-        #fi
-        #popd
-        #endgroup
+        begingroup "Applying patches to DXVK"
+        pushd sources/dxvk
+        if [[ ${CX_MAJOR} ==22 ]]; then
+        if [[ $ENABLE_PATCH ]]; then
+        patch -p1 < ${GITHUB_WORKSPACE}/0001-build-macOS-Fix-up-for-macOS.patch
+        patch -p1 < ${GITHUB_WORKSPACE}/0002-fix-d3d11-header-for-MinGW-9-1883.patch
+        patch -p1 < ${GITHUB_WORKSPACE}/0003-fixes-for-mingw-gcc-12.patch
+        patch -p1 < ${GITHUB_WORKSPACE}/0004-cstdint-fix.patch
+        fi
+        fi
+        popd
+        endgroup
 
         begingroup "Installing dependencies for DXVK"
         if [[ $RUN_BREW ]]; then
