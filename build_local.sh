@@ -146,6 +146,7 @@ if [[ ${CX_MAJOR} -ge 21 ]]; then
         patch -p1 < ${GITHUB_WORKSPACE}/0001-build-macOS-Fix-up-for-macOS.patch
         patch -p1 < ${GITHUB_WORKSPACE}/0002-fix-d3d11-header-for-MinGW-9-1883.patch
         patch -p1 < ${GITHUB_WORKSPACE}/0003-fixes-for-mingw-gcc-12.patch
+        patch -p1 < ${GITHUB_WORKSPACE}/0004-cstdint-fix.patch
         popd
         endgroup
 
