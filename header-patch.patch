@@ -1,0 +1,31 @@
+--- a/dxvk/src/util/config/config.h	2023-07-06 16:32:09
++++ b/dxvk/src/util/config/config.h	2023-10-07 01:59:47
+@@ -2,6 +2,7 @@
+
+ #include <string>
+ #include <unordered_map>
++#include <cstdint>
+
+ namespace dxvk {
+
+--- a/dxvk/src/util/util_bit.h	2023-07-06 16:32:09
++++ b/dxvk/src/util/util_bit.h	2023-10-07 01:59:09
+@@ -17,6 +17,7 @@
+ #include "util_math.h"
+
+ #include <cstring>
++#include <cstdint>
+ #include <iterator>
+ #include <type_traits>
+
+--- a/wine/programs/winedbg/resource.h	2023-09-26 03:01:45
++++ b/wine/programs/winedbg/resource.h	2023-10-07 02:25:57
+@@ -20,7 +20,7 @@
+
+ #include <windef.h>
+ #include <winuser.h>
+-#include "distversion.h"
++#include "../../include/distversion.h"
+
+ #define IDD_CRASH_DLG   100
+ #define IDD_DETAILS_DLG 101
