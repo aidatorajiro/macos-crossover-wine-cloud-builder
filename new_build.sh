@@ -2,6 +2,7 @@ CROSSOVER_VERSION="23.5.0"
 CROSSOVER_DLFILE="crossover-sources-$CROSSOVER_VERSION.tar.gz"
 CROSSOVER_DLLINK="https://media.codeweavers.com/pub/crossover/source/$CROSSOVER_DLFILE"
 WORKSPACE=$(pwd)
+export PATH="$(brew --prefix bison)/bin:$(brew --prefix cx-llvm)/bin:$(brew --prefix flex)/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 if [[ ! -f ${CROSSOVER_DLFILE} ]]; then
     wget $CROSSOVER_DLLINK
@@ -26,9 +27,6 @@ brew_install () {
                         sdl2
     
 }
-
-export PATH="$(brew --prefix bison)/bin:$(brew --prefix cx-llvm)/bin:$(brew --prefix flex)/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-
 
 patch_all () {
     pushd sources/wine
@@ -134,11 +132,4 @@ config_wine32on64 () {
 make_wine32on64 () {
     prepare_env_wine32on64
     make_wine_base
-}
-
-config_freetype () {
-    prepare_env_base
-    pushd ${WORKSPACE}/sources/freetype
-    ./configure
-    popd
 }
