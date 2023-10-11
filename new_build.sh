@@ -82,6 +82,7 @@ prepare_env_base () {
     export LDFLAGS=
     export PKG_CONFIG_PATH=
     export LIBRARY_PATH=
+    export LD_LIBRARY_PATH=
     export C_INCLUDE_PATH=
     export CROSSCFLAGS="-g -O2"
     export CROSSCXXFLAGS=
