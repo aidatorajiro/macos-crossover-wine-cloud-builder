@@ -133,3 +133,32 @@ make_wine32on64 () {
     prepare_env_wine32on64
     make_wine_base
 }
+
+prepare_env_freetype () {
+    prepare_env_base
+    export CFLAGS="-m32"
+    mkdir -p $WORKSPACE/build/freetype
+    export BUILD_DIR=$WORKSPACE/build/freetype
+}
+
+submodule_freetype () {
+    pushd $WORKSPACE/sources/freetype
+    pushd subprojects
+    git clone https://github.com/nyorain/dlg
+    popd
+    popd
+}
+
+config_freetype () {
+    prepare_env_freetype
+    pushd ${BUILD_DIR}
+    cmake -S ${WORKSPACE}/sources/freetype -B .
+    popd
+}
+
+make_freetype () {
+    prepare_env_freetype
+    pushd ${BUILD_DIR}
+    make -j
+    popd
+}
