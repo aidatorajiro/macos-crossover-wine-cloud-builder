@@ -15,17 +15,17 @@ fi
 brew_install () {
     brew update
     brew install \
-                        bison              \
-                        gcenx/wine/cx-llvm \
-                        flex               \
-                        gettext            \
-                        mingw-w64          \
-                        pkgconfig
+            bison              \
+            gcenx/wine/cx-llvm \
+            flex               \
+            gettext            \
+            mingw-w64          \
+            pkgconfig
     brew install \
-                        freetype           \
-                        molten-vk          \
-                        sdl2
-    
+            freetype           \
+            molten-vk          \
+            sdl2
+
 }
 
 patch_all () {
@@ -110,6 +110,10 @@ prepare_env_wine32on64 () {
     prepare_env_base
     mkdir -p $WORKSPACE/build/wine32on64
     export BUILD_DIR=$WORKSPACE/build/wine32on64
+    export CFLAGS="-std=c17"
+    export CPPFLAGS=
+    export CROSSCFLAGS=
+    export CROSSCPPFLAGS=
 }
 
 config_wine32on64 () {
@@ -126,7 +130,8 @@ config_wine32on64 () {
         --without-vulkan \
         --disable-vulkan_1 \
         --disable-winedbg \
-        --disable-winevulkan
+        --disable-winevulkan \
+        --without-freetype
 }
 
 make_wine32on64 () {
